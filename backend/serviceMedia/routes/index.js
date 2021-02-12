@@ -1,9 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const APP_NAME = process.env.APP_NAME;
+const {
+  saveImage,
+  getAllImages,
+  deleteImage,
+} = require("../controllers/imageController");
 
-router.get("/", (req, res, next) => {
-  res.send(APP_NAME);
-});
+router.post("/", saveImage);
+router.get("/", getAllImages);
+router.delete("/:id", deleteImage);
 
 module.exports = router;

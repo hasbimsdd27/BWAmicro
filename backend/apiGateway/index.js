@@ -20,4 +20,6 @@ app.use("/orders", OrdersRouter);
 app.use("/payments", PaymentsRouter);
 app.use("/users", UsersRouter);
 
-app.listen(PORT, () => console.log(`API Gateway running on PORT`, PORT));
+app.listen(PORT, () =>
+  console.log(`${process.env.APP_NAME} running on PORT ${PORT}`)
+);

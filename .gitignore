@@ -7,5 +7,7 @@
 */**/.env.production
 */.env.production
 
+*/**/public/images/***
+
 
 

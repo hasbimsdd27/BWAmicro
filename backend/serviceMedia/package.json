@@ -6,6 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "env-cmd -f .env.local node index.js",
+    "migrate:dev": "env-cmd -f .env.local npx sequelize db:migrate",
+    "migrate:dev:undo": "env-cmd -f .env.local npx sequelize db:migrate:undo:all",
     "dev": "env-cmd -f .env.local nodemon index.js"
   },
   "keywords": [],
