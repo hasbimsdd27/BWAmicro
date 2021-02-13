@@ -4,7 +4,10 @@ const { SaveDataToFile, DeleteFile } = require("../utils");
 exports.saveImage = async (req, res) => {
   const image = req.body.image;
 
-  if (image.split(";")[0].indexOf("data") === -1) {
+  if (
+    image.split(";")[0].indexOf("data") === -1 ||
+    image.split(";")[0].indexOf("image") === -1
+  ) {
     return res.status(400).send({ status: "error", message: "invalid base64" });
   }
 

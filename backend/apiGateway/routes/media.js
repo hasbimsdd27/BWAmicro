@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
+const MediaController = require("../controller/media");
 
-router.get("/", (req, res, next) => {
-  res.send("media");
-});
+router.post("/", MediaController.create);
+router.get("/", MediaController.getAll);
+router.delete("/:id", MediaController.deleteMedia);
 
 module.exports = router;
