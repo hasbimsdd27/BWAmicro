@@ -57,7 +57,7 @@ exports.deleteImage = async (req, res) => {
     return res.status(400).send({ status: "error", message: status });
   }
 
-  await Media.destroy({ where: { id: media.id } });
+  await media.destroy();
 
   return res.status(204).send({ status: "success" });
 };

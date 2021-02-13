@@ -8,15 +8,19 @@
     "start:dev": "env-cmd -f .env.local node index.js",
     "migrate:dev": "env-cmd -f .env.local npx sequelize db:migrate",
     "migrate:dev:undo": "env-cmd -f .env.local npx sequelize db:migrate:undo:all",
+    "seed:dev": "env-cmd -f .env.local npx sequelize db:seed:all",
+    "seed:dev:undo": "env-cmd -f .env.local npx sequelize db:seed:undo:all",
     "dev": "env-cmd -f .env.local nodemon index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "argon2": "^0.27.1",
     "cors": "^2.8.5",
     "env-cmd": "^10.1.0",
     "express": "^4.17.1",
+    "fastest-validator": "^1.10.0",
     "mysql2": "^2.2.5",
     "sequelize": "^6.5.0"
   }
