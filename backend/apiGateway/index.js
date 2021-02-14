@@ -6,6 +6,7 @@ const OrdersRouter = require("./routes/orders");
 const PaymentsRouter = require("./routes/payments");
 const UsersRouter = require("./routes/users");
 const IndexRouter = require("./routes/index");
+const RefreshTokenRouter = require("./routes/refreshToken");
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -24,6 +25,7 @@ app.use(`${process.env.API_VERSION}/media`, MediaRouter);
 app.use(`${process.env.API_VERSION}/orders`, OrdersRouter);
 app.use(`${process.env.API_VERSION}/payments`, PaymentsRouter);
 app.use(`${process.env.API_VERSION}/users`, UsersRouter);
+app.use(`${process.env.API_VERSION}/refresh_token`, RefreshTokenRouter);
 
 app.listen(PORT, () =>
   console.log(`${process.env.APP_NAME} running on PORT ${PORT}`)
