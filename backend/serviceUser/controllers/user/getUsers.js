@@ -14,5 +14,5 @@ module.exports = async (req, res) => {
   }
 
   const users = await User.findAll(sqlOptions);
-  res.send({ status: "success", data: users });
+  return res.send({ status: "success", data: users });
 };

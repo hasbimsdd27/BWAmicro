@@ -7,8 +7,8 @@ module.exports = async (req, res) => {
   });
 
   if (!user) {
-    res.status(404).send({ status: "error", message: "user not found" });
+    return res.status(404).send({ status: "error", message: "user not found" });
   }
 
-  return res.send({ status: "success", data: user });
+  return res.status(200).send({ status: "success", data: user });
 };
