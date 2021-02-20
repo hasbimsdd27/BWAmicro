@@ -8,10 +8,17 @@ class Course extends Model
 {
     protected $table = 'courses';
 
+
     protected $fillable = [
         'name','certificate','thumbnail','type','status','price','level','description','mentor_id'
     ];
 
+
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d H:m:s',
+        'updated_at' => 'datetime:Y-m-d H:m:s'
+    ];
+    
     public function mentor(){
         return $this->belongsTop('App\Mentor');
     }
