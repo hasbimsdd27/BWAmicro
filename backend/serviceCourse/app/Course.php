@@ -20,7 +20,7 @@ class Course extends Model
     ];
     
     public function mentor(){
-        return $this->belongsTop('App\Mentor');
+        return $this->belongsTo('App\Mentor');
     }
 
     public function chapters(){
@@ -28,6 +28,6 @@ class Course extends Model
     }
 
     public function images(){
-        return $this->hasMany('App\ImageCourses')->orderBy('id', 'DESC');
+        return $this->hasMany('App\ImageCourse')->orderBy('id', 'DESC');
     }
 }
