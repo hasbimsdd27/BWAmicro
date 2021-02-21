@@ -12,6 +12,7 @@ const ChapterRouter = require("./routes/chapters");
 const LessonRouter = require("./routes/lessons");
 const MyCoursesRouter = require("./routes/myCourses");
 const ImageCoursesRouter = require("./routes/imageCourses");
+const ReviewsRouter = require("./routes/reviews");
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -58,6 +59,12 @@ app.use(
   `${process.env.API_VERSION}/image-courses`,
   Middleware.VerifyToken,
   ImageCoursesRouter
+);
+
+app.use(
+  `${process.env.API_VERSION}/reviews`,
+  Middleware.VerifyToken,
+  ReviewsRouter
 );
 
 app.listen(PORT, () =>
