@@ -2,8 +2,7 @@ const express = require("express");
 
 const CoursesRouter = require("./routes/courses");
 const MediaRouter = require("./routes/media");
-const OrdersRouter = require("./routes/orders");
-const PaymentsRouter = require("./routes/payments");
+const OrdersPaymentsRouter = require("./routes/orderPayments");
 const UsersRouter = require("./routes/users");
 const IndexRouter = require("./routes/index");
 const RefreshTokenRouter = require("./routes/refreshToken");
@@ -13,6 +12,7 @@ const LessonRouter = require("./routes/lessons");
 const MyCoursesRouter = require("./routes/myCourses");
 const ImageCoursesRouter = require("./routes/imageCourses");
 const ReviewsRouter = require("./routes/reviews");
+const WebhookRouter = require("./routes/webhook");
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -28,8 +28,11 @@ app.use(
   CoursesRouter
 );
 app.use(`${process.env.API_VERSION}/media`, MediaRouter);
-app.use(`${process.env.API_VERSION}/orders`, OrdersRouter);
-app.use(`${process.env.API_VERSION}/payments`, PaymentsRouter);
+app.use(
+  `${process.env.API_VERSION}/orders`,
+  Middleware.VerifyToken,
+  OrdersPaymentsRouter
+);
 app.use(`${process.env.API_VERSION}/users`, UsersRouter);
 app.use(`${process.env.API_VERSION}/refresh_token`, RefreshTokenRouter);
 app.use(
@@ -66,6 +69,7 @@ app.use(
   Middleware.VerifyToken,
   ReviewsRouter
 );
+app.use("/webhook", WebhookRouter);
 
 app.listen(PORT, () =>
   console.log(`${process.env.APP_NAME} running on PORT ${PORT}`)

@@ -44,9 +44,13 @@ class MyCourseController extends Controller
 
         $userId = $request->input('user_id');
         $user = getUser($userId);
-
-        if(!$user['status']==='error'){
-            return response()->json(['status'=>$user['status'], $message=>$user['message'], $user['http_code']]);
+        // echo "<pre>".print_r($user)."</pre>";
+        if($user['status']==='error'){
+            return response()->json(
+                [
+                    'status'=>$user['status'], 
+                    'message'=>$user['message']
+                ],$user['http_code']);
         }
 
         $isExistMyCourse = MyCourse::where('course_id','=',$courseId)->where('user_id','=',$userId)->exists();
@@ -55,10 +59,48 @@ class MyCourseController extends Controller
             return response()->json(['status'=>'error', 'message'=>'user already take this course'], 409);
         }
 
+        if($course->type==='premium'){
+
+            if($course->price===0){
+                return response()->json([
+                    'status'=>'error',
+                    'message'=>'prce can\'t be 0' 
+                ], 405);
+            }
+
+            $order = postOrder(
+                [
+                    'user'=>$user['data'],
+                    'course'=>$course->toArray()
+                ]
+                );
+
+                //  echo "<pre>".print_r($order)."</pre>";
+
+            if($order['status']==='error'){
+                return response()->json(['status'=>$order['status'], 'message'=>$order['message']], $order['http_code']);
+            }
+
+            return response()->json([
+                'status'=>$order['status'],
+                'data'=>$order['data']
+            ]);
+            
+        }else{
+            $myCourse = MyCourse::create($data);
+            return response()->json(['status'=>'success', 'data'=>$myCourse]);
+        }
+
+       
+    }
+    public function createPremiumAccess(Request $request)
+    {
+        $data = $request->all();
         $myCourse = MyCourse::create($data);
 
-
-
-        return response()->json(['status'=>'success', 'data'=>$myCourse]);
+        return response()->json([
+            'status' => 'success',
+            'data' => $myCourse
+        ]);
     }
 }
