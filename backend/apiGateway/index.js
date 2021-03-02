@@ -27,10 +27,16 @@ app.use(
   // Middleware.VerifyToken,
   CoursesRouter
 );
-app.use(`${process.env.API_VERSION}/media`, MediaRouter);
+app.use(
+  `${process.env.API_VERSION}/media`,
+  Middleware.VerifyToken,
+  Middleware.Permission(["admin", "student"]),
+  MediaRouter
+);
 app.use(
   `${process.env.API_VERSION}/orders`,
   Middleware.VerifyToken,
+  Middleware.Permission(["admin", "student"]),
   OrdersPaymentsRouter
 );
 app.use(`${process.env.API_VERSION}/users`, UsersRouter);
@@ -38,35 +44,41 @@ app.use(`${process.env.API_VERSION}/refresh_token`, RefreshTokenRouter);
 app.use(
   `${process.env.API_VERSION}/mentors`,
   Middleware.VerifyToken,
+  Middleware.Permission(["admin"]),
   MentorsRouter
 );
 app.use(
   `${process.env.API_VERSION}/chapters`,
   Middleware.VerifyToken,
+  Middleware.Permission(["admin"]),
   ChapterRouter
 );
 
 app.use(
   `${process.env.API_VERSION}/lessons`,
   Middleware.VerifyToken,
+  Middleware.Permission(["admin"]),
   LessonRouter
 );
 
 app.use(
   `${process.env.API_VERSION}/my-courses`,
   Middleware.VerifyToken,
+  Middleware.Permission(["admin", "student"]),
   MyCoursesRouter
 );
 
 app.use(
   `${process.env.API_VERSION}/image-courses`,
   Middleware.VerifyToken,
+  Middleware.Permission(["admin"]),
   ImageCoursesRouter
 );
 
 app.use(
   `${process.env.API_VERSION}/reviews`,
   Middleware.VerifyToken,
+  Middleware.Permission(["admin", "students"]),
   ReviewsRouter
 );
 app.use("/webhook", WebhookRouter);
