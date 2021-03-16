@@ -10,6 +10,11 @@
     "migrate:dev:undo": "env-cmd -f .env.local npx sequelize db:migrate:undo:all",
     "seed:dev": "env-cmd -f .env.local npx sequelize db:seed:all",
     "seed:dev:undo": "env-cmd -f .env.local npx sequelize db:seed:undo:all",
+    "start": "env-cmd -f .env node index.js",
+    "migrate": "env-cmd -f .env npx sequelize db:migrate",
+    "migrate:undo": "env-cmd -f .env npx sequelize db:migrate:undo:all",
+    "seed": "env-cmd -f .env npx sequelize db:seed:all",
+    "seed:undo": "env-cmd -f .env npx sequelize db:seed:undo:all",
     "dev": "env-cmd -f .env.local nodemon index.js"
   },
   "keywords": [],

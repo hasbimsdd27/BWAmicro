@@ -8,6 +8,9 @@
     "start:dev": "env-cmd -f .env.local node index.js",
     "migrate:dev": "env-cmd -f .env.local npx sequelize db:migrate",
     "migrate:dev:undo": "env-cmd -f .env.local npx sequelize db:migrate:undo:all",
+    "start": "env-cmd -f .env node index.js",
+    "migrate": "env-cmd -f .env npx sequelize db:migrate",
+    "migrate:undo": "env-cmd -f .env npx sequelize db:migrate:undo:all",
     "dev": "env-cmd -f .env.local nodemon index.js"
   },
   "keywords": [],
