@@ -1,8 +1,11 @@
+
 FROM php:7.4-fpm
 
 # Arguments defined in docker-compose.yml
 ARG user
 ARG uid
+
+WORKDIR /var/www
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -29,6 +32,15 @@ RUN mkdir -p /home/$user/.composer && \
     chown -R $user:$user /home/$user
 
 # Set working directory
-WORKDIR /var/www
+
+COPY . /var/www/
+
+RUN chmod -R 777 /var/www
 
 USER $user
+
+RUN composer update
+
+RUN composer install
+
+RUN php artisan key:generate
