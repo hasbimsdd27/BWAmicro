@@ -10,7 +10,7 @@ services:
     networks:
       - service-media
 
-  db:
+  dbmedia:
     image: mariadb:10.5-focal
     env_file: ./src/.env
     volumes:

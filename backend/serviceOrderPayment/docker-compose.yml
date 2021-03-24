@@ -12,7 +12,7 @@ services:
     networks:
       - service-order-payments
 
-  db:
+  dborderpayment:
     image: mariadb:10.5-focal
     environment:
       MYSQL_DATABASE: db_micro_orders_payments

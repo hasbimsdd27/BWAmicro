@@ -10,7 +10,7 @@ services:
     networks:
       - service-user
 
-  db:
+  dbuser:
     image: mariadb:10.5-focal
     env_file: ./src/.env
     volumes:

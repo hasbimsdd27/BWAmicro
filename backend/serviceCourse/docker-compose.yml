@@ -12,7 +12,7 @@ services:
     networks:
       - service-course
 
-  db:
+  dbcourse:
     image: mariadb:10.5-focal
     environment:
       MYSQL_DATABASE: db_micro_courses
