@@ -1,9 +1,12 @@
 import Head from "next/head";
 import axios from "src/configs/axios";
 import Circle from "public/images/circle-accents-1.svg";
-import Header from "src/parts/header";
+import Header from "src/parts/Header";
+import Hero from "src/parts/Hero";
+import Clients from "src/parts/Clients";
+import ListCourses from "src/parts/ListCourses";
 
-function Home(data) {
+function Home({ data }) {
   return (
     <>
       <Head>
@@ -15,8 +18,15 @@ function Home(data) {
           <Circle className="absolute left-0 bottom-0"></Circle>
           <div className="sunshine"></div>
           <div className="container mx-auto">
-            <Header></Header>
+            <Header />
+            <Hero />
           </div>
+        </section>
+        <section className="container mx-auto pt-24">
+          <Clients />
+        </section>{" "}
+        <section className="container mx-auto pt-24">
+          <ListCourses data={data} />
         </section>
       </main>
     </>
