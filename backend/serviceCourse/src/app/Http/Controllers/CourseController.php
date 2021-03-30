@@ -109,7 +109,7 @@ class CourseController extends Controller
 
         $course = Course::create($data);
 
-        return response()->json(['status'=>'success', 'data'=>$course],404);
+        return response()->json(['status'=>'success', 'data'=>$course]);
 
     }
 

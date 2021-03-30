@@ -26,7 +26,9 @@ exports.saveImage = async (req, res) => {
     message: "image saved",
     data: {
       id: media.id,
-      image: `${req.get("host")}/images/${media.image}`,
+      image: `${
+        req.get("host").indexOf("localhost") > -1 ? "https" : ""
+      }${req.get("host")}/images/${media.image}`,
     },
   });
 };
@@ -34,7 +36,9 @@ exports.saveImage = async (req, res) => {
 exports.getAllImages = async (req, res) => {
   const media = await Media.findAll({ attributes: ["id", "image"] });
   const mappedMedia = media.map((item) => {
-    item.image = `${req.get("host")}/images/${item.image}`;
+    item.image = `${
+      req.get("host").indexOf("localhost") > -1 ? "https" : ""
+    }${req.get("host")}/images/${item.image}`;
     return item;
   });
   return res.send({ status: "success", data: mappedMedia });
